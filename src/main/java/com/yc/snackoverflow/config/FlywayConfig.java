@@ -34,12 +34,17 @@ public class FlywayConfig {
      */
     @Bean(initMethod = "migrate")
     public Flyway flyway(DataSource dataSource) {
-        return Flyway.configure()
+        Flyway flyway = Flyway.configure()
                 .dataSource(dataSource)
                 .locations(locations)
                 .baselineOnMigrate(baselineOnMigrate)
                 .table(table)
                 .validateOnMigrate(validateOnMigrate)
                 .load();
+
+        // Repair the schema history table before migration
+        flyway.repair();
+
+        return flyway;
     }
 }
