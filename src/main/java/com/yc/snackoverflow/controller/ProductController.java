@@ -51,24 +51,24 @@ public class ProductController {
     public ResultData<PageResult<ProductResponseDto>> getProducts(
             @Parameter(description = "Product name for filtering") 
             @RequestParam(required = false) String name,
-            
+
             @Parameter(description = "Product class ID for filtering") 
             @RequestParam(required = false) Long classId,
-            
+
             @Parameter(description = "Page number (0-based)") 
             @RequestParam(defaultValue = "0") int page,
-            
+
             @Parameter(description = "Page size") 
             @RequestParam(defaultValue = "10") int size,
-            
+
             @Parameter(description = "Sort field and direction (e.g. name,asc)") 
             @RequestParam(defaultValue = "id,desc") String sort) {
-        
+
         String[] sortParams = sort.split(",");
         Sort.Direction direction = sortParams.length > 1 && "asc".equalsIgnoreCase(sortParams[1]) ? 
                 Sort.Direction.ASC : Sort.Direction.DESC;
         PageRequest pageRequest = PageRequest.of(page, size, Sort.by(direction, sortParams[0]));
-        
+
         Page<ProductResponseDto> products = productService.findProducts(name, classId, pageRequest);
         return ResultData.success(PageResult.from(products));
     }
@@ -88,7 +88,7 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResultData<ProductResponseDto> getProduct(
             @Parameter(description = "Product ID") @PathVariable Long id) {
-        
+
         ProductResponseDto product = productService.findById(id);
         return ResultData.success(product);
     }
@@ -109,7 +109,7 @@ public class ProductController {
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResultData<ProductResponseDto> createProduct(
             @Valid @RequestBody ProductCreateRequestDto request) {
-        
+
         log.info("Creating new product: {}", request.getName());
         ProductResponseDto createdProduct = productService.createProduct(request);
         return ResultData.success("Product created successfully", createdProduct);
@@ -131,7 +131,7 @@ public class ProductController {
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResultData<List<ProductResponseDto>> createProducts(
             @Valid @RequestBody List<ProductCreateRequestDto> requests) {
-        
+
         log.info("Batch creating {} products", requests.size());
         List<ProductResponseDto> createdProducts = productService.createProducts(requests);
         return ResultData.success("Products created successfully", createdProducts);
@@ -156,7 +156,7 @@ public class ProductController {
     public ResultData<ProductResponseDto> updateProduct(
             @Parameter(description = "Product ID") @PathVariable Long id,
             @Valid @RequestBody ProductUpdateRequestDto request) {
-        
+
         log.info("Updating product with ID: {}", id);
         ProductResponseDto updatedProduct = productService.updateProduct(id, request);
         return ResultData.success("Product updated successfully", updatedProduct);
@@ -178,9 +178,9 @@ public class ProductController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResultData<Void> deleteProduct(
             @Parameter(description = "Product ID") @PathVariable Long id) {
-        
+
         log.info("Deleting product with ID: {}", id);
         productService.deleteProduct(id);
-        return ResultData.success("Product deleted successfully");
+        return ResultData.success("Product deleted successfully", null);
     }
 }

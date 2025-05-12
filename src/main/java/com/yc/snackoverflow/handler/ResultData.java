@@ -79,6 +79,18 @@ public class ResultData<T> {
     }
 
     /**
+     * Create a failure response with error code (as String) and message
+     *
+     * @param code Error code as String
+     * @param message Error message
+     * @param <T> Type of the response data
+     * @return Failure response with error code and message
+     */
+    public static <T> ResultData<T> fail(String code, String message) {
+        return new ResultData<>(Integer.parseInt(code.replaceAll("[^0-9]", "")), message, null);
+    }
+
+    /**
      * Create a failure response with error code, message and data
      *
      * @param code Error code
@@ -89,5 +101,29 @@ public class ResultData<T> {
      */
     public static <T> ResultData<T> fail(int code, String message, T data) {
         return new ResultData<>(code, message, data);
+    }
+
+    /**
+     * Create a failure response with error code (as String), message and data
+     *
+     * @param code Error code as String
+     * @param message Error message
+     * @param data Error data
+     * @param <T> Type of the response data
+     * @return Failure response with error code, message and data
+     */
+    public static <T> ResultData<T> fail(String code, String message, T data) {
+        return new ResultData<>(Integer.parseInt(code.replaceAll("[^0-9]", "")), message, data);
+    }
+
+    /**
+     * Create a failure response with message
+     *
+     * @param message Error message
+     * @param <T> Type of the response data
+     * @return Failure response with error code and message
+     */
+    public static <T> ResultData<T> fail(String message) {
+        return new ResultData<>(ErrorCode.FAIL, message, null);
     }
 }

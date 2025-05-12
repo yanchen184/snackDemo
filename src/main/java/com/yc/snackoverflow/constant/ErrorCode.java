@@ -9,8 +9,9 @@ package com.yc.snackoverflow.constant;
  * - Booking: 40000-49999
  */
 public final class ErrorCode {
-    // Success
+    // Success and generic failure
     public static final int SUCCESS = 0;
+    public static final int FAIL = 1;
     
     // General errors: 10000-19999
     public static final int SYSTEM_ERROR = 10000;

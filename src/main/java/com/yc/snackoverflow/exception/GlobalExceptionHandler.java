@@ -47,7 +47,7 @@ public class GlobalExceptionHandler {
         log.warn("Web exception: {}", ex.getMessage());
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(ResultData.fail(ex.getCode(), ex.getMessage()));
+                .body(ResultData.fail(ex.getCode(), ex.getWebErrorMsg()));
     }
 
     /**

@@ -13,5 +13,10 @@ public interface MemberService {
     List<Member> list(List<String> memberList);
 
     Member generateMember(RegisterReq registerReq);
-
+    
+    /**
+     * Get the currently authenticated member
+     * @return Current authenticated Member
+     */
+    Member getCurrentAuthenticatedMember();
 }

@@ -15,6 +15,8 @@ import java.util.List;
 @Data
 public class BookingDto {
 
+    private Long id;
+
     private String memberName;
 
     private Date date;

@@ -3,7 +3,7 @@ package com.yc.snackoverflow.service.impl;
 import com.yc.snackoverflow.data.ProductClassDto;
 import com.yc.snackoverflow.exception.WebErrorEnum;
 import com.yc.snackoverflow.model.ProductClass;
-import com.yc.snackoverflow.reposity.ProductClassDao;
+import com.yc.snackoverflow.repository.ProductClassDao;
 import com.yc.snackoverflow.service.ProductClassService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.yc.snackoverflow.reposity;
+package com.yc.snackoverflow.repository;
 
 import com.yc.snackoverflow.data.ProductClassDto;
 import com.yc.snackoverflow.model.Product;

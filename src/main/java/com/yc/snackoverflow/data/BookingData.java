@@ -17,6 +17,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BookingData {
 
+    private Long id;
+
     private String productName;
 
     private Integer count;

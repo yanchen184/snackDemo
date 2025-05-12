@@ -31,6 +31,8 @@ public enum WebErrorEnum implements WebError {
     USER_ALREADY_EXISTS(HttpStatus.CONFLICT, "ERR0017", "User already exists. "),
     EMAIL_ALREADY_EXISTS(HttpStatus.CONFLICT, "ERR0018", "Email already exists. "),
     PRODUCT_CLASS_ALREADY_EXISTS(HttpStatus.CONFLICT, "ERR0019", "Product class already exists. "),
+    UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "ERR0020", "Unauthorized access. "),
+    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "ERR0021", "User not found. "),
     ;
 
     private final HttpStatus statusCode;

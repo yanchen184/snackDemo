@@ -3,6 +3,7 @@ package com.yc.snackoverflow.service;
 import com.yc.snackoverflow.dto.request.ProductCreateRequestDto;
 import com.yc.snackoverflow.dto.request.ProductUpdateRequestDto;
 import com.yc.snackoverflow.dto.response.ProductResponseDto;
+import com.yc.snackoverflow.model.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -70,4 +71,19 @@ public interface ProductService {
      * @return List of products
      */
     List<ProductResponseDto> findByNameList(List<String> productNameList);
+
+    /**
+     * Legacy method: Get product entities by name list
+     *
+     * @param productNameList List of product names
+     * @return List of product entities
+     */
+    List<Product> list(List<String> productNameList);
+
+    /**
+     * Create or update products from DTOs
+     *
+     * @param productDtos List of product DTOs
+     */
+    void createOrUpdate(List<com.yc.snackoverflow.data.ProductDto> productDtos);
 }
